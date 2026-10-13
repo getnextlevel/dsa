@@ -1,0 +1,34 @@
+"""
+Given a binary array nums, return the maximum length of a contiguous subarray with an equal number of 0 and 1.
+
+ 
+
+Example 1:
+
+Input: nums = [0,1]
+Output: 2
+Explanation: [0, 1] is the longest contiguous subarray with an equal number of 0 and 1.
+
+"""
+
+def find_max_diff(nums):
+    count_diffs = {0: -1}
+
+    max_len = count_diff = 0
+
+    for idx, num in enumerate(nums):
+        count_diff += 1 if num == 1 else -1
+
+        if count_diff in count_diffs:
+            max_len = max(max_len, idx - count_diffs[count_diff])
+
+        else:
+            count_diffs[count_diff] = idx
+    return max_len
+
+
+if __name__ == "__main__":
+    nums = [0,1]
+    print(find_max_diff(nums))
+
+
