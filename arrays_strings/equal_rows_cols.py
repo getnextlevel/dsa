@@ -19,6 +19,12 @@ Explanation: There is 1 equal row and column pair:
 from collections import Counter
 
 
+def find_equal_rows_cols(grid: list[list[int]]) -> int:
+    seen = Counter(map(tuple, grid))
+
+    return sum(seen[col] for col in zip(*grid))
+
+
 def equal_pairs(grid: list[list[int]]) -> int:
     rows = Counter(map(tuple, grid))
     cols = Counter(zip(*grid))
@@ -28,7 +34,9 @@ def equal_pairs(grid: list[list[int]]) -> int:
 
 if __name__ == "__main__":
     grid = [[3,2,1],[1,7,6],[2,7,7]]
+    print(find_equal_rows_cols(grid))
     print(equal_pairs(grid))
 
     grid = [[3,1,2,2],[1,4,4,5],[2,4,2,2],[2,4,2,2]]
+    print(find_equal_rows_cols(grid))
     print(equal_pairs(grid))
