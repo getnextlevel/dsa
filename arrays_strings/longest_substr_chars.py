@@ -1,6 +1,7 @@
 from collections import Counter
 
 def longest_substring(s):
+    
     counter = Counter()
 
     ans = left = 0
