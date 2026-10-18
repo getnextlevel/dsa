@@ -1,25 +1,38 @@
 def customSortString(order: str, s: str) -> str:
-    order_idx = {}
-    s_chars = list(s)
+    result = list(s)
 
-    print("s_chars before: ", s_chars)
-    count = 0
-    
-    for char in s:
-        # print("idx, char: ", idx, char)
-        # s_idx[char] = idx
+        # Sort using the index in order as the key
+    result.sort(key=lambda c: order.index(c) if c in order else len(order))
+    return ''.join(result)
 
-        if char in order:
-            s_chars.remove(char)
-            count += 1
 
-    print("count : ", count)
-    
-
-    print("s_chars after: ", s_chars)
-    print("order[:count + 1]: ", order[:count + 1])
-    return order[:count] + "".join(s_chars)
-    
+# Simplified version (same idea, no lambda, no repeated order.index scans):
+#
+# def customSortString(order: str, s: str) -> str:
+#     # rank of each char = its position in order, e.g. "cba" -> {c: 0, b: 1, a: 2}
+#     rank = {char: i for i, char in enumerate(order)}
+#
+#     # chars not in order go last, so give them a rank past the end
+#     missing = len(order)
+#
+#     # sort s by rank, then join the sorted chars back into a string
+#     return ''.join(sorted(s, key=lambda c: rank.get(c, missing)))
+#
+# Even simpler, with no lambda at all (count each char, emit in order):
+#
+# from collections import Counter
+#
+# def customSortString(order: str, s: str) -> str:
+#     counts = Counter(s)
+#     result = ''
+#
+#     for char in order:                  # chars in the custom order first
+#         result += char * counts.pop(char, 0)
+#
+#     for char, count in counts.items():  # whatever is left, in any order
+#         result += char * count
+#
+#     return result
 
 
 if __name__ == "__main__":
