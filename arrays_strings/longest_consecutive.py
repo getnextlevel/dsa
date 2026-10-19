@@ -15,12 +15,16 @@ Explanation: The longest consecutive elements sequence is [1, 2, 3, 4]. Therefor
 
 def longest_consecutive(nums):
     longest_streak = 0
+    num_set = set(nums)
 
     for num in nums:
-        current_num = num
-        current_streak = 1
+        if num - 1 not in num_set:
+            current_num = num
+            current_streak = 1
+        # current_num = num
+        # current_streak = 1
 
-        while current_num + 1 in nums:
+        while current_num + 1 in num_set:
             current_num += 1
             current_streak += 1
 
