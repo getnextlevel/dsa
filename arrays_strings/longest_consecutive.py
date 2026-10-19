@@ -17,7 +17,7 @@ def longest_consecutive(nums):
     longest_streak = 0
     num_set = set(nums)
 
-    for num in nums:
+    for num in num_set:
         if num - 1 not in num_set:
             current_num = num
             current_streak = 1
