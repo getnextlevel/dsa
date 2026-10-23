@@ -49,19 +49,13 @@ def find_overlapping_intervals(intervals):
     output = []
 
     intervals.sort(key=lambda x: x[1])
-    print(f"sorted intervals: {intervals}")
     overlapped_interval = intervals[0]
     for i in range(1, len(intervals)):
-        print(f"interval i :: {intervals[i]}")
         if overlapped_interval[1] > intervals[i][0]:
             overlapped_interval = [overlapped_interval[0], intervals[i][1]]
-            print("overlapped_interval if :: ", overlapped_interval)
         else:
-            print("else ::")
             output.append(overlapped_interval)
             overlapped_interval = intervals[i]
-            print(f"overlapped_interval :: {overlapped_interval}")
-    print(f"overlapped_interval :: {overlapped_interval}")
     output.append(overlapped_interval)
     return output
 
